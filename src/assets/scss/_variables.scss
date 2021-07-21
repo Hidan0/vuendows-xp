@@ -1,0 +1,17 @@
+// colors
+//
+
+$not-quite-white: #f1f1f1;
+$light-blue: #d2e2f9;
+
+$primary-blue: #0f5eca;
+$primary-light-blue: #3b87e4;
+
+$warning: #ebb574;
+$danger: #eb594f;
+$success: #239b14;
+
+:export {
+    danger: $danger;
+    light_blue: $primary-light-blue;
+}

@@ -1,4 +1,6 @@
-# windows-xp-ui
+# Vuendows Xp
+
+A Windows XP ui clone made in Vue.
 
 ## Project setup
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
