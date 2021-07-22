@@ -19,7 +19,7 @@ export default defineComponent({
 @import "~@/assets/scss/_variables.scss";
 
 .danger {
-  background-color: $danger;
+  background: $danger;
 }
 
 .close-icon {

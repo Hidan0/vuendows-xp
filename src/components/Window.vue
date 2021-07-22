@@ -1,5 +1,5 @@
 <template>
-  <div class="window">
+  <div class="window selected" :style="windowSize">
     <WindowBar title="Random Window" />
     <div class="white-box"></div>
   </div>
@@ -13,15 +13,35 @@ export default defineComponent({
   components: {
     WindowBar,
   },
+  props: {
+    width: {
+      type: String,
+      default: "500px",
+    },
+    height: {
+      type: String,
+      default: "250px",
+    },
+  },
+  setup(props) {
+    const windowSize = {
+      width: props.width,
+      height: props.height,
+    };
+
+    return { windowSize };
+  },
 });
 </script>
 
 <style lang="scss">
 @import "~@/assets/scss/_variables.scss";
 
+.selected {
+  box-shadow: 0 0 0 1px $selected;
+}
+
 .window {
-  width: 500px;
-  height: 250px;
   border: 4px solid $primary-blue;
   border-radius: 8px 8px 0px 0px;
   background-color: $not-quite-white;

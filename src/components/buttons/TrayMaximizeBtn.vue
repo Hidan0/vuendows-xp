@@ -19,16 +19,16 @@ export default defineComponent({
 @import "~@/assets/scss/_variables.scss";
 
 .light-blue {
-  background-color: $primary-light-blue;
+  background: $primary-light-blue;
 }
 
 .maximize-icon {
   &::before {
     content: "";
-    position: absolute;
+    position: relative;
     display: block;
-    left: 90.8%;
-    top: 2.5%;
+    left: 10%;
+    top: 10%;
     width: 16px;
     height: 15px;
     background-color: $not-quite-white;
@@ -36,10 +36,10 @@ export default defineComponent({
 
   &::after {
     content: "";
-    position: absolute;
+    position: relative;
     display: block;
-    left: 91.2%;
-    top: 3.6%;
+    left: 18%;
+    top: -52%;
     width: 12px;
     height: 11px;
     background-color: $primary-light-blue;

@@ -1,19 +1,22 @@
 <template>
-  <div class="window-bar">
+  <div class="window-bar" @drag="onDrag">
     <span>{{ title }}</span>
     <div class="tray">
-      <MaximizeBtn class="mg-left" /><CloseBtn class="mg-left" />
+      <HideBtn /><MaximizeBtn class="mg-left" /><CloseBtn class="mg-left" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
+
+import HideBtn from "./buttons/TrayHideBtn.vue";
 import CloseBtn from "./buttons/TrayCloseBtn.vue";
 import MaximizeBtn from "./buttons/TrayMaximizeBtn.vue";
 
 export default defineComponent({
   components: {
+    HideBtn,
     CloseBtn,
     MaximizeBtn,
   },
@@ -21,6 +24,13 @@ export default defineComponent({
     title: {
       type: String,
     },
+  },
+  setup() {
+    const onDrag = (evt: MouseEvent) => {
+      console.log("DRAGGGGGG", evt);
+    };
+
+    return { onDrag };
   },
 });
 </script>
@@ -39,6 +49,10 @@ export default defineComponent({
     padding: 0px 2px;
     justify-content: center;
     color: #fff;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
 
