@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
@@ -15,7 +15,7 @@ export default defineComponent({
   },
   setup(props) {
     const btnStyle = {
-        backgroundColor: props.bgColor,
+      backgroundColor: props.bgColor,
     };
 
     return { btnStyle };

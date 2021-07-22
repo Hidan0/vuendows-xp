@@ -2,7 +2,7 @@
   <Window />
 </template>
 
-<script>
+<script lang="ts">
 import Window from "./components/Window.vue";
 
 export default {

@@ -1,11 +1,13 @@
 <template>
   <div class="window-bar">
     <span>{{ title }}</span>
-    <div class="tray"><MaximizeBtn class="mg-left" /><CloseBtn class="mg-left" /></div>
+    <div class="tray">
+      <MaximizeBtn class="mg-left" /><CloseBtn class="mg-left" />
+    </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import CloseBtn from "./buttons/TrayCloseBtn.vue";
 import MaximizeBtn from "./buttons/TrayMaximizeBtn.vue";
@@ -44,6 +46,6 @@ export default defineComponent({
   display: flex;
 }
 .mg-left {
-    margin-left: 2px;
+  margin-left: 2px;
 }
 </style>

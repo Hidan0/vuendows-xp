@@ -1,20 +1,16 @@
 <template>
-  <TrayBtn :bgColor="lightBlue">
+  <TrayBtn class="light-blue">
     <span class="maximize-icon"></span>
   </TrayBtn>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import TrayBtn from "./TrayBtn.vue";
-import styles from "../../assets/scss/_variables.scss";
 
 export default defineComponent({
   components: {
     TrayBtn,
-  },
-  setup() {
-    return { lightBlue: styles.light_blue };
   },
 });
 </script>
@@ -22,9 +18,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "~@/assets/scss/_variables.scss";
 
+.light-blue {
+  background-color: $primary-light-blue;
+}
+
 .maximize-icon {
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     left: 90.8%;
@@ -35,7 +35,7 @@ export default defineComponent({
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     left: 91.2%;
