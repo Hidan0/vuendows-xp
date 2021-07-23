@@ -1,12 +1,12 @@
 <template>
-  <div class="window selected" :style="windowSize">
-    <WindowBar title="Random Window" />
+  <div class="window selected" :style="styles">
+    <WindowBar title="Random Window" @mousedown="onMouseDown" />
     <div class="white-box"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { computed, defineComponent, onMounted, onUnmounted, reactive, ref } from "@vue/runtime-core";
 import WindowBar from "./WindowBar.vue";
 
 export default defineComponent({
@@ -15,21 +15,68 @@ export default defineComponent({
   },
   props: {
     width: {
-      type: String,
       default: "500px",
+      type: String,
     },
     height: {
-      type: String,
       default: "250px",
+      type: String,
+    },
+    x: {
+      default: 300,
+      type: Number,
+    },
+    y: {
+      default: 200,
+      type: Number,
     },
   },
-  setup(props) {
-    const windowSize = {
-      width: props.width,
-      height: props.height,
+  setup: (props) => {
+    const isGrabbed = ref(false);
+
+    const pos = reactive({ x: props.x, y: props.y });
+
+    const styles = computed((): Record<string, string> => {
+      let _styles: Record<string, string> = {
+        width: props.width,
+        height: props.height,
+        top: pos.x + "px",
+        left: pos.y + "px",
+      };
+
+      return _styles;
+    });
+
+    const onMouseDown = (evt: MouseEvent) => {
+      if (evt.button === 0) {
+        isGrabbed.value = !isGrabbed.value;
+      }
     };
 
-    return { windowSize };
+    const onMouseMove = (evt: MouseEvent) => {
+      if (evt.button === 0 && isGrabbed.value) {
+        pos.x = evt.clientY;
+        pos.y = evt.clientX;
+      }
+    };
+
+    const onMouseUp = (evt: MouseEvent) => {
+      if (evt.button === 0) {
+        isGrabbed.value = false;
+      }
+    };
+
+    onMounted(() => {
+      window.addEventListener("mousemove", onMouseMove, { passive: true });
+      window.addEventListener("mouseup", onMouseUp, { passive: true });
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    })
+
+    return { styles, onMouseDown };
   },
 });
 </script>
@@ -42,13 +89,11 @@ export default defineComponent({
 }
 
 .window {
+  position: fixed;
   border: 4px solid $primary-blue;
   border-radius: 8px 8px 0px 0px;
   background-color: $not-quite-white;
   // Edit at run time
-  position: fixed;
-  top: 50px;
-  left: 100px;
 }
 .white-box {
   width: 50px;

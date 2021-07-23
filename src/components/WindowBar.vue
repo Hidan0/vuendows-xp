@@ -1,5 +1,5 @@
 <template>
-  <div class="window-bar" @drag="onDrag">
+  <div class="window-bar">
     <span>{{ title }}</span>
     <div class="tray">
       <HideBtn /><MaximizeBtn class="mg-left" /><CloseBtn class="mg-left" />
@@ -24,13 +24,6 @@ export default defineComponent({
     title: {
       type: String,
     },
-  },
-  setup() {
-    const onDrag = (evt: MouseEvent) => {
-      console.log("DRAGGGGGG", evt);
-    };
-
-    return { onDrag };
   },
 });
 </script>

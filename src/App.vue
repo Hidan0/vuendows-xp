@@ -1,5 +1,5 @@
 <template>
-  <Window width="700px" height="400px" />
+  <Window width="700px" height="400px" :x="200" :y="200" />
 </template>
 
 <script lang="ts">
