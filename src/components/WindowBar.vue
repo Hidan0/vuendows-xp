@@ -1,6 +1,6 @@
 <template>
   <div class="window-bar">
-    <span>{{ title }}</span>
+    <span class="text">{{ title }}</span>
     <div class="tray">
       <HideBtn /><MaximizeBtn class="mg-left" /><CloseBtn class="mg-left" />
     </div>
@@ -36,12 +36,22 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   height: 28px;
-  background-color: $primary-blue;
+  background-image: linear-gradient(to right, $primary-blue, $primary-light-blue, $primary-blue);
+
+  &::before {
+    position: absolute;
+    top: -2px;
+    content: "";
+    width: 99%;
+    height: 2px;
+    background: rgba($color: #fff, $alpha: 0.15);
+  }
 
   & > span {
     padding: 0px 2px;
     justify-content: center;
     color: #fff;
+    user-select: none;
   }
 
   &:hover {
