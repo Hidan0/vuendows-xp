@@ -1,6 +1,6 @@
 <template>
   <div class="window" :style="styles">
-    <WindowBar title="Random Window" @mousedown="onMouseDown" />
+    <WindowBar :title="title" @mousedown="onMouseDown" />
     <slot></slot>
   </div>
   <div class="border-sel" :style="h_styles"></div>
@@ -37,6 +37,10 @@ export default defineComponent({
     y: {
       default: 200,
       type: Number,
+    },
+    title: {
+      default: "Random window",
+      type: String,
     },
   },
   setup: (props) => {

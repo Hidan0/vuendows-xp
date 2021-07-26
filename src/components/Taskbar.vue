@@ -1,20 +1,29 @@
 <template>
   <div class="bar">
-    <div class="start-menu text">
+    <StartMenu class="bottom" :style="showMenu"></StartMenu>
+    <div class="start-menu text" @click="toggleMenuBtn">
       <span class="start-menu-img"></span> Start
     </div>
     <div class="tray">
-      <div class="expand-btn text">˂</div>
-      <span class="text">{{ time }}</span>
+      <div class="expand-btn text" @click="toggleTrayBtn">˂</div>
+      <div class="tb-tray-btn text" :style="showTray">X1</div>
+      <div class="tb-tray-btn text" :style="showTray">X2</div>
+      <div class="tb-tray-btn text" :style="showTray">X3</div>
+      <div class="tb-tray-btn text">{{ time }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { computed, defineComponent } from "@vue/runtime-core";
 import { ref } from "vue";
 
+import StartMenu from "./StartMenu.vue";
+
 export default defineComponent({
+  components: {
+    StartMenu,
+  },
   setup: () => {
     function formatNum(num: number): string {
       return num <= 9 ? 0 + num.toString() : num.toString();
@@ -33,7 +42,27 @@ export default defineComponent({
     getDate();
     setInterval(getDate, 1000);
 
-    return { time };
+
+    const toggleTray = ref(false);
+    const toggleTrayBtn = () => {
+      toggleTray.value = !toggleTray.value;
+    };
+
+    const showTray = computed(() => {
+      return { display: toggleTray.value ? "" : "none" };
+    });
+
+
+    const toggleMenu = ref(false);
+    const showMenu = computed(() => {
+      return { display: toggleMenu.value ? "" : "none" };
+    })
+
+    const toggleMenuBtn = () => {
+      toggleMenu.value = !toggleMenu.value;
+    };
+
+    return { time, showTray, toggleTrayBtn, showMenu, toggleMenuBtn };
   },
 });
 </script>
@@ -52,6 +81,10 @@ export default defineComponent({
   background: $primary-blue;
   box-shadow: inset 0 4px 1px lighten($color: $primary-blue, $amount: 10%),
     inset 0 -4px 3px darken($color: $primary-blue, $amount: 10%);
+
+  & > .bottom {
+    bottom: 32px;
+  }
 
   & > .tray {
     display: flex;
@@ -79,6 +112,19 @@ export default defineComponent({
         lighten($color: $primary-light-blue, $amount: 15%) 10%,
         $primary-blue 90%
       );
+
+      &:hover {
+        background-image: linear-gradient(
+          110deg,
+          lighten($color: $primary-light-blue, $amount: 20%) 10%,
+          lighten($color: $primary-blue, $amount: 10%) 90%
+        );
+      }
+    }
+
+    & > .tb-tray-btn {
+      margin-left: 2px;
+      margin-right: 2px;
     }
   }
 
@@ -95,6 +141,12 @@ export default defineComponent({
     font-style: italic;
     box-shadow: inset 0 0 12px rgba($color: #000, $alpha: 0.6),
       inset 0 4px 1px rgba($color: #fff, $alpha: 0.4);
+
+    &:hover {
+      background: lighten($color: $success, $amount: 5%);
+      box-shadow: inset 0 0 12px rgba($color: #000, $alpha: 0.5),
+        inset 0 4px 1px rgba($color: #fff, $alpha: 0.6);
+    }
 
     & > .start-menu-img {
       width: 24px;

@@ -1,5 +1,5 @@
 <template>
-  <Window width="700px" height="400px" :x="200" :y="200">
+  <Window title="Hello World" width="700px" height="400px" :x="200" :y="200">
     <h1>Hello World</h1>
   </Window>
   <TaskBar />
@@ -24,6 +24,7 @@ export default {
 * {
   padding: 0px;
   margin: 0px;
+  user-select: none;
 }
 body {
   background-color: #3b4252;
