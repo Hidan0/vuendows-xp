@@ -42,7 +42,6 @@ export default defineComponent({
     getDate();
     setInterval(getDate, 1000);
 
-
     const toggleTray = ref(false);
     const toggleTrayBtn = () => {
       toggleTray.value = !toggleTray.value;
@@ -52,11 +51,10 @@ export default defineComponent({
       return { display: toggleTray.value ? "" : "none" };
     });
 
-
     const toggleMenu = ref(false);
     const showMenu = computed(() => {
       return { display: toggleMenu.value ? "" : "none" };
-    })
+    });
 
     const toggleMenuBtn = () => {
       toggleMenu.value = !toggleMenu.value;
@@ -132,7 +130,7 @@ export default defineComponent({
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 110px;
+    width: 100px;
     height: inherit;
     background: $success;
     border-radius: 0px 12px 12px 0px;
@@ -140,7 +138,7 @@ export default defineComponent({
     font-weight: bold;
     font-style: italic;
     box-shadow: inset 0 0 12px rgba($color: #000, $alpha: 0.6),
-      inset 0 4px 1px rgba($color: #fff, $alpha: 0.4);
+      inset 0 4px 1px rgba($color: #fff, $alpha: 0.2);
 
     &:hover {
       background: lighten($color: $success, $amount: 5%);
